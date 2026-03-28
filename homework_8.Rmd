@@ -1,0 +1,42 @@
+---
+title: "Homework 8"
+author: "Kimberly McNeil"
+date: "3/27/2026"
+output:
+  html_document:
+    code_folding: show
+linkcolor: blue
+urlcolor: blue
+---
+
+```{r setup, include=FALSE, echo=TRUE}
+
+# remember warning=FALSE and message=FALSE
+
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(tidyverse)
+library(Lock5Data)
+library(dplyr)
+```
+
+
+# Numeric Data Analysis
+
+## BMI Calculation
+
+The following table details the first six rows for Sex, Weight, Height, and the newly added BMI from the Student Survey dataset:^[Question 1 Complete]
+
+```{r}
+bmi_data = StudentSurvey %>%
+  mutate(BMI = round(701 * (Weight / Height^2), 1)) %>%
+  select(Sex, Weight, Height, BMI)
+
+kable(head(bmi_data), caption = "First 6 rows: Sex, Weight, Height, and BMI")
+```
+
+
+
+
+
+
