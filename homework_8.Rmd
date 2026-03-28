@@ -32,7 +32,7 @@ bmi_data = StudentSurvey %>%
   mutate(BMI = round(701 * (Weight / Height^2), 1)) %>%
   select(Sex, Weight, Height, BMI)
 
-kable(head(bmi_data), caption = "First 6 rows: Sex, Weight, Height, and BMI")
+kable(head(bmi_data), caption = "First 6 Rows: Sex, Weight, Height, and BMI")
 ```
 
 ## Binning BMI into categories
@@ -50,10 +50,24 @@ bmi_data_categories = bmi_data %>%
     )
   )
 
-kable(head(bmi_data_categories), caption = "First 6 rows: BMI with category labels")
+kable(head(bmi_data_categories), caption = "First 6 Rows: BMI with Category Labels")
 ```
 
+## Highest and Lowest BMIs by Sex
 
+The following table summarizes the highest and lowest BMIs for male and female students:^[Question 3 Complete]
+
+```{r bmi-extremes}
+bmi_ends = bmi_data %>%
+  group_by(Sex) %>%
+  summarise(
+    Min_BMI = min(BMI, na.rm = TRUE),
+    Max_BMI = max(BMI, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+kable(bmi_ends, caption = "Minimum and Maximum BMI by Sex")
+```
 
 
 

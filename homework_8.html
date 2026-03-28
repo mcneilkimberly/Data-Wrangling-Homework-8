@@ -458,9 +458,9 @@ pre code {
   mutate(BMI = round(701 * (Weight / Height^2), 1)) %&gt;%
   select(Sex, Weight, Height, BMI)
 
-kable(head(bmi_data), caption = &quot;First 6 rows: Sex, Weight, Height, and BMI&quot;)</code></pre>
+kable(head(bmi_data), caption = &quot;First 6 Rows: Sex, Weight, Height, and BMI&quot;)</code></pre>
 <table>
-<caption>First 6 rows: Sex, Weight, Height, and BMI</caption>
+<caption>First 6 Rows: Sex, Weight, Height, and BMI</caption>
 <thead>
 <tr class="header">
 <th align="left">Sex</th>
@@ -522,9 +522,9 @@ kable(head(bmi_data), caption = &quot;First 6 rows: Sex, Weight, Height, and BMI
     )
   )
 
-kable(head(bmi_data_categories), caption = &quot;First 6 rows: BMI with category labels&quot;)</code></pre>
+kable(head(bmi_data_categories), caption = &quot;First 6 Rows: BMI with Category Labels&quot;)</code></pre>
 <table>
-<caption>First 6 rows: BMI with category labels</caption>
+<caption>First 6 Rows: BMI with Category Labels</caption>
 <thead>
 <tr class="header">
 <th align="left">Sex</th>
@@ -580,12 +580,48 @@ kable(head(bmi_data_categories), caption = &quot;First 6 rows: BMI with category
 </tbody>
 </table>
 </div>
+<div id="highest-and-lowest-bmis-by-sex" class="section level2">
+<h2>Highest and Lowest BMIs by Sex</h2>
+<p>The following table summarizes the highest and lowest BMIs for male and female students:<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<pre class="r"><code>bmi_ends = bmi_data %&gt;%
+  group_by(Sex) %&gt;%
+  summarise(
+    Min_BMI = min(BMI, na.rm = TRUE),
+    Max_BMI = max(BMI, na.rm = TRUE),
+    .groups = &quot;drop&quot;
+  )
+
+kable(bmi_ends, caption = &quot;Minimum and Maximum BMI by Sex&quot;)</code></pre>
+<table>
+<caption>Minimum and Maximum BMI by Sex</caption>
+<thead>
+<tr class="header">
+<th align="left">Sex</th>
+<th align="right">Min_BMI</th>
+<th align="right">Max_BMI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">F</td>
+<td align="right">13.2</td>
+<td align="right">35.1</td>
+</tr>
+<tr class="even">
+<td align="left">M</td>
+<td align="right">17.3</td>
+<td align="right">41.5</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>Question 1 Complete<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>Question 2 Complete<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Question 3 Complete<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
