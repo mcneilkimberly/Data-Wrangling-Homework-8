@@ -509,11 +509,83 @@ kable(head(bmi_data), caption = &quot;First 6 rows: Sex, Weight, Height, and BMI
 </tbody>
 </table>
 </div>
+<div id="binning-bmi-into-categories" class="section level2">
+<h2>Binning BMI into categories</h2>
+<p>The following table shows the same table as before, but with labels for BMIs in certain ranges (Underweight: Below 18.5, Healthy Weight: 18.5–24.9, Overweight: 25.0–29.9, and Obese: 30.0 or higher):<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<pre class="r"><code>bmi_data_categories = bmi_data %&gt;%
+  mutate(
+    BMI_Category = cut(
+      BMI,
+      breaks = c(-Inf, 18.5, 25.0, 30.0, Inf),
+      labels = c(&quot;Underweight&quot;, &quot;Healthy Weight&quot;, &quot;Overweight&quot;, &quot;Obese&quot;),
+      right  = FALSE # makes intervals closed on the left instead
+    )
+  )
+
+kable(head(bmi_data_categories), caption = &quot;First 6 rows: BMI with category labels&quot;)</code></pre>
+<table>
+<caption>First 6 rows: BMI with category labels</caption>
+<thead>
+<tr class="header">
+<th align="left">Sex</th>
+<th align="right">Weight</th>
+<th align="right">Height</th>
+<th align="right">BMI</th>
+<th align="left">BMI_Category</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">M</td>
+<td align="right">180</td>
+<td align="right">71</td>
+<td align="right">25.0</td>
+<td align="left">Overweight</td>
+</tr>
+<tr class="even">
+<td align="left">F</td>
+<td align="right">120</td>
+<td align="right">66</td>
+<td align="right">19.3</td>
+<td align="left">Healthy Weight</td>
+</tr>
+<tr class="odd">
+<td align="left">M</td>
+<td align="right">208</td>
+<td align="right">72</td>
+<td align="right">28.1</td>
+<td align="left">Overweight</td>
+</tr>
+<tr class="even">
+<td align="left">M</td>
+<td align="right">110</td>
+<td align="right">63</td>
+<td align="right">19.4</td>
+<td align="left">Healthy Weight</td>
+</tr>
+<tr class="odd">
+<td align="left">F</td>
+<td align="right">150</td>
+<td align="right">65</td>
+<td align="right">24.9</td>
+<td align="left">Healthy Weight</td>
+</tr>
+<tr class="even">
+<td align="left">F</td>
+<td align="right">114</td>
+<td align="right">65</td>
+<td align="right">18.9</td>
+<td align="left">Healthy Weight</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>Question 1 Complete<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Question 2 Complete<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 

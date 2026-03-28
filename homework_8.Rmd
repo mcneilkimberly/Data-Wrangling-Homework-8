@@ -35,6 +35,28 @@ bmi_data = StudentSurvey %>%
 kable(head(bmi_data), caption = "First 6 rows: Sex, Weight, Height, and BMI")
 ```
 
+## Binning BMI into categories
+
+The following table shows the same table as before, but with labels for BMIs in certain ranges (Underweight: Below 18.5, Healthy Weight: 18.5–24.9, Overweight: 25.0–29.9, and Obese: 30.0 or higher):^[Question 2 Complete]
+
+```{r}
+bmi_data_categories = bmi_data %>%
+  mutate(
+    BMI_Category = cut(
+      BMI,
+      breaks = c(-Inf, 18.5, 25.0, 30.0, Inf),
+      labels = c("Underweight", "Healthy Weight", "Overweight", "Obese"),
+      right  = FALSE # makes intervals closed on the left instead
+    )
+  )
+
+kable(head(bmi_data_categories), caption = "First 6 rows: BMI with category labels")
+```
+
+
+
+
+
 
 
 
