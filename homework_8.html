@@ -615,6 +615,57 @@ kable(bmi_ends, caption = &quot;Minimum and Maximum BMI by Sex&quot;)</code></pr
 </tbody>
 </table>
 </div>
+<div id="greater-of-each-sat-scores" class="section level2">
+<h2>Greater of each SAT scores</h2>
+<p>The following table shows the first six rows of the students’ Verbal and Math SAT scores along with a new column displaying which of the two is greater:<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<pre class="r"><code>sat_greatest = StudentSurvey %&gt;%
+  mutate(greater_SAT = pmax(VerbalSAT, MathSAT, na.rm = TRUE))  %&gt;%
+  select(VerbalSAT, MathSAT, greater_SAT)
+
+kable(head(sat_greatest), caption = &quot;First 6 rows: Verbal SAT, Math SAT, and the greater of the two&quot;)</code></pre>
+<table>
+<caption>First 6 rows: Verbal SAT, Math SAT, and the greater of the two</caption>
+<thead>
+<tr class="header">
+<th align="right">VerbalSAT</th>
+<th align="right">MathSAT</th>
+<th align="right">greater_SAT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">540</td>
+<td align="right">670</td>
+<td align="right">670</td>
+</tr>
+<tr class="even">
+<td align="right">520</td>
+<td align="right">630</td>
+<td align="right">630</td>
+</tr>
+<tr class="odd">
+<td align="right">550</td>
+<td align="right">560</td>
+<td align="right">560</td>
+</tr>
+<tr class="even">
+<td align="right">490</td>
+<td align="right">630</td>
+<td align="right">630</td>
+</tr>
+<tr class="odd">
+<td align="right">720</td>
+<td align="right">450</td>
+<td align="right">720</td>
+</tr>
+<tr class="even">
+<td align="right">600</td>
+<td align="right">550</td>
+<td align="right">600</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
@@ -622,6 +673,7 @@ kable(bmi_ends, caption = &quot;Minimum and Maximum BMI by Sex&quot;)</code></pr
 <li id="fn1"><p>Question 1 Complete<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>Question 2 Complete<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>Question 3 Complete<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Question 4 Complete<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 

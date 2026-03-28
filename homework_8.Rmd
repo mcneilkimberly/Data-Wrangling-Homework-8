@@ -69,9 +69,18 @@ bmi_ends = bmi_data %>%
 kable(bmi_ends, caption = "Minimum and Maximum BMI by Sex")
 ```
 
+## Greater of each SAT scores
+
+The following table shows the first six rows of the students' Verbal and Math SAT scores along with a new column displaying which of the two is greater:^[Question 4 Complete]
 
 
+```{r}
+sat_greatest = StudentSurvey %>%
+  mutate(greater_SAT = pmax(VerbalSAT, MathSAT, na.rm = TRUE))  %>%
+  select(VerbalSAT, MathSAT, greater_SAT)
 
+kable(head(sat_greatest), caption = "First 6 rows: Verbal SAT, Math SAT, and the greater of the two")
+```
 
 
 
