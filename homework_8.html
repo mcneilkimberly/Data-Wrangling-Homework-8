@@ -622,9 +622,9 @@ kable(bmi_ends, caption = &quot;Minimum and Maximum BMI by Sex&quot;)</code></pr
   mutate(greater_SAT = pmax(VerbalSAT, MathSAT, na.rm = TRUE))  %&gt;%
   select(VerbalSAT, MathSAT, greater_SAT)
 
-kable(head(sat_greatest), caption = &quot;First 6 rows: Verbal SAT, Math SAT, and the greater of the two&quot;)</code></pre>
+kable(head(sat_greatest), caption = &quot;First 6 Rows: Verbal SAT, Math SAT, and the Greater of the Two&quot;)</code></pre>
 <table>
-<caption>First 6 rows: Verbal SAT, Math SAT, and the greater of the two</caption>
+<caption>First 6 Rows: Verbal SAT, Math SAT, and the Greater of the Two</caption>
 <thead>
 <tr class="header">
 <th align="right">VerbalSAT</th>
@@ -666,6 +666,53 @@ kable(head(sat_greatest), caption = &quot;First 6 rows: Verbal SAT, Math SAT, an
 </tbody>
 </table>
 </div>
+<div id="z-scores-for-total-sat-scores" class="section level2">
+<h2>Z-scores for Total SAT Scores</h2>
+<p>The following table shows the first six rows of the students’ total SAT scores along with the new column calculating their z-scores:<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<pre class="r"><code>sat_z_scores = StudentSurvey %&gt;%
+  mutate(
+    z_score = (SAT - mean(SAT, na.rm = TRUE)) / sd(SAT, na.rm = TRUE),
+    z_score = round(z_score, 3)
+  ) %&gt;%
+  select(SAT, z_score)
+
+kable(head(sat_z_scores), caption = &quot;First 6 rows: Total SAT Score and its Z-score&quot;)</code></pre>
+<table>
+<caption>First 6 rows: Total SAT Score and its Z-score</caption>
+<thead>
+<tr class="header">
+<th align="right">SAT</th>
+<th align="right">z_score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1210</td>
+<td align="right">0.053</td>
+</tr>
+<tr class="even">
+<td align="right">1150</td>
+<td align="right">-0.442</td>
+</tr>
+<tr class="odd">
+<td align="right">1110</td>
+<td align="right">-0.772</td>
+</tr>
+<tr class="even">
+<td align="right">1120</td>
+<td align="right">-0.690</td>
+</tr>
+<tr class="odd">
+<td align="right">1170</td>
+<td align="right">-0.277</td>
+</tr>
+<tr class="even">
+<td align="right">1150</td>
+<td align="right">-0.442</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
@@ -674,6 +721,7 @@ kable(head(sat_greatest), caption = &quot;First 6 rows: Verbal SAT, Math SAT, an
 <li id="fn2"><p>Question 2 Complete<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>Question 3 Complete<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 <li id="fn4"><p>Question 4 Complete<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Question 5 Complete<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 

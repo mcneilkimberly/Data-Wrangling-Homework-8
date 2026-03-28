@@ -9,10 +9,8 @@ linkcolor: blue
 urlcolor: blue
 ---
 
-```{r setup, include=FALSE, echo=TRUE}
-
-# remember warning=FALSE and message=FALSE
-
+```{r setup, include=FALSE, echo=TRUE, warning=FALSE, message=FALSE}
+# remember warning=FALSE and message=FALSE only when done
 knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 library(tidyverse)
@@ -73,15 +71,25 @@ kable(bmi_ends, caption = "Minimum and Maximum BMI by Sex")
 
 The following table shows the first six rows of the students' Verbal and Math SAT scores along with a new column displaying which of the two is greater:^[Question 4 Complete]
 
-
 ```{r}
 sat_greatest = StudentSurvey %>%
   mutate(greater_SAT = pmax(VerbalSAT, MathSAT, na.rm = TRUE))  %>%
   select(VerbalSAT, MathSAT, greater_SAT)
 
-kable(head(sat_greatest), caption = "First 6 rows: Verbal SAT, Math SAT, and the greater of the two")
+kable(head(sat_greatest), caption = "First 6 Rows: Verbal SAT, Math SAT, and the Greater of the Two")
 ```
 
+## Z-scores for Total SAT Scores
 
+The following table shows the first six rows of the students' total SAT scores along with the new column calculating their z-scores:^[Question 5 Complete]
 
+```{r}
+sat_z_scores = StudentSurvey %>%
+  mutate(
+    z_score = (SAT - mean(SAT, na.rm = TRUE)) / sd(SAT, na.rm = TRUE),
+    z_score = round(z_score, 3)
+  ) %>%
+  select(SAT, z_score)
 
+kable(head(sat_z_scores), caption = "First 6 rows: Total SAT Score and its Z-score")
+```
